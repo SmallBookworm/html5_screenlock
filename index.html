@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>手势密码</title>
+    <link rel="stylesheet" type="text/css" href="css.css" >
+    <script src="engine.js"></script>
+    <script>
+        function init() {
+            var canvas = document.getElementById('first');
+            resetCanvas(canvas);
+            window.addEventListener("resize", function () {
+                resetCanvas(canvas);
+            });
+            control(canvas,document.getElementById('radios'));
+        }
+        function resetCanvas(canvas) {
+            var stageWidth = document.width || document.body.clientWidth;
+            var stageHeight = document.height || document.body.clientHeight;
+            var radios=document.getElementById('radios');
+            var main=document.getElementById('main');
+            radios.style.fontSize=stageHeight*0.4/14.3+ "px";
+            document.getElementById('set').style.height=stageHeight*0.4/14.3+ "px";
+            document.getElementById('set').style.width=stageHeight*0.4/14.3+ "px";
+            document.getElementById('check').style.height=stageHeight*0.4/14.3+ "px";
+            document.getElementById('check').style.width=stageHeight*0.4/14.3+ "px";
+            stageHeight-=radios.offsetHeight;
+            main.style.marginTop =stageHeight*2/13.3+ "px";
+            radios.style.marginTop =stageHeight*2.5/13.3+ "px";
+            canvas.height = stageHeight*6.8/13.3;
+            canvas.width = canvas.height*5.5/6.8;
+            main.style.marginLeft=(stageWidth - canvas.width) / 2 + "px";
+            initCanvas(canvas);
+        }
+    </script>
+</head>
+<body onload="init()">
+<div id="main">
+<canvas id="first" width="200px" height="200px">您的浏览器不支持canvas标签。</canvas>
+<form id="radios">
+<input type="radio" id="set" name="password"  checked>设置密码
+    <br/>
+<input type="radio" id="check" name="password">验证密码
+</form>
+</div>
+</body>
+</html>
